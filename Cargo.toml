@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "crates/bin",
+    "crates/api",
+    "crates/core",
+    "crates/domain",
+    "crates/infrastructure",
+]
+
+[profile.release]
+debug = true
