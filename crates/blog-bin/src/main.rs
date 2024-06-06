@@ -5,6 +5,7 @@ use clap::Parser;
 
 use blog_api::router::ApplicationCnotroller;
 use blog_core::config::AppConfig;
+use tracing_subscriber::EnvFilter;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -17,10 +18,13 @@ async fn main() -> anyhow::Result<()> {
     )?;
     let time_offset = time::UtcOffset::current_local_offset().unwrap_or(time::UtcOffset::UTC);
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(time_offset, timer);
-    tracing_subscriber::fmt().with_timer(timer).init();
+    tracing_subscriber::fmt()
+        .with_env_filter(EnvFilter::from_default_env())
+        .with_timer(timer)
+        .init();
 
     let port = config.port;
-    ApplicationCnotroller::serve(port)
+    ApplicationCnotroller::serve(port, &config.cors_origin)
         .await
         .context("could not initialize application routes")?;
 

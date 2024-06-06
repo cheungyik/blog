@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   blog_postgres:
     container_name: blog_postgres
