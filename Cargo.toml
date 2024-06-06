@@ -1,10 +1,11 @@
 [workspace]
+resolver = "2"
 members = [
-    "crates/bin",
-    "crates/api",
-    "crates/core",
-    "crates/domain",
-    "crates/infrastructure",
+    "crates/blog-api",
+    "crates/blog-bin",
+    "crates/blog-core",
+    "crates/blog-domain",
+    "crates/blog-infrastructure",
 ]
 
 [profile.release]

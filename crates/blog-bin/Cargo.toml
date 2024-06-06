@@ -1,0 +1,28 @@
+[package]
+name = "blog-bin"
+version = "0.1.0"
+authors = ["蜂蜜実験室 <hachimi-lab@outlook.com>"]
+edition = "2021"
+license = "MIT"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+blog-core = { path = "../blog-core" }
+blog-api = { path = "../blog-api" }
+
+tokio = { version = "1.38.0", features = [
+    "rt",
+    "rt-multi-thread",
+    "macros",
+    "net",
+    "fs",
+] }
+dotenvy = "0.15.7"
+anyhow = "1.0.86"
+clap = "4.5.4"
+tracing-subscriber = { version = "0.3.18", features = [
+    "env-filter",
+    "fmt",
+    "time",
+] }
+time = { version = "0.3.36", features = ["local-offset"] }
